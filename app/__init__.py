@@ -11,7 +11,7 @@ SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 TO_EMAIL = os.environ.get('TO_EMAIL')
 
 # Path to your service account key file
-JSON_KEYFILE = 'la-homme-1722075889171-894f2a881bd0.json'
+JSON_KEYFILE = 'la-homme.json'
 # Google Sheet ID
 SPREADSHEET_ID = '14j6jcdU8deSEQkF1vwFLkY7G7ALn8YYv0IiliPWGt1Q'
 
