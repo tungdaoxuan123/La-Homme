@@ -368,10 +368,6 @@ button {
     .sdt_text {
         padding-top: 70px; /* Further adjust font size */
     }
-
-    .learnmore_bt a {
-        padding: 8px 15px; /* Adjust button padding */
-    }
 }
 
 @media (max-width: 480px) {
@@ -391,10 +387,6 @@ button {
 
     .sdt_text {
         padding-top: 50px; /* Further adjust font size */
-    }
-
-    .learnmore_bt a {
-        padding: 6px 10px; /* Further adjust button padding */
     }
 }
 
