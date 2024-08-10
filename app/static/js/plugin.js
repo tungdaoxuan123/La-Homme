@@ -19160,3 +19160,22 @@ function validateDate() {
     dateInput.classList.remove('error');
     return true;
 }
+window.mobileCheck = function() {
+    let check = false;
+    (function(a) {
+      if (/android|bb\d+|meego|mobile|opera mini|windows\sphone|iphone|ipad|ipod|blackberry|iemobile|kindle|silk|pda|pocket|playbook|webos|windows ce/i.test(a)) {
+        check = true;
+      }
+    })(navigator.userAgent || navigator.vendor || window.opera);
+    return check;
+  }
+
+  window.onload = function() {
+    if (window.mobileCheck()) {
+      // If true (mobile device), set the href for mobile
+      document.querySelector('.chat-face a').setAttribute('href', 'https://m.me/100070007803291');
+    } else {
+      // If false (not a mobile device), use the regular Facebook URL
+      document.querySelector('.chat-face a').setAttribute('href', 'https://www.facebook.com/messages/t/100070007803291/');
+    }
+  }
