@@ -30,6 +30,7 @@ def create_app():
             minute = request.form['minute']
             note = request.form['note']
             additional_service =  request.form['additional_service']
+            final_price = request.form['final_price']
 
             # Construct the complete time from the hour and minute
             time = f"{hour.zfill(2)}:{minute.zfill(2)}"
@@ -38,7 +39,7 @@ def create_app():
             timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
             # Data to be appended to the Google Sheet
-            data = [service, name, phone, date, time, price, additional_service, timestamp, note]
+            data = [service, name, phone, date, time, price, additional_service, timestamp, final_price, note]
 
             # Get Google Sheets client and append the data
             client = get_gsheet_client(JSON_KEYFILE)
