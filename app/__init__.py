@@ -20,18 +20,34 @@ def create_app():
 
     @app.route('/send-email', methods=['POST'])
     def send_email():
-        name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
-        price = request.form['selected_price']
+        try:
+            service =  request.form['selected_service']
+            name = request.form['name']
+            phone = request.form['phone']
+            price = request.form['selected_price']
+            date = request.form['date']
+            hour = request.form['hour']
+            minute = request.form['minute']
+            note = request.form['note']
+            additional_service =  request.form['additional_service']
 
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        data = [name, email, phone, price, timestamp]
+            # Construct the complete time from the hour and minute
+            time = f"{hour.zfill(2)}:{minute.zfill(2)}"
 
-        client = get_gsheet_client(JSON_KEYFILE)
-        append_to_sheet(client, SPREADSHEET_ID, data)
+            # Add timestamp for when the form was submitted
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        return jsonify(message='Form submitted successfully and data stored in Google Sheets!')
+            # Data to be appended to the Google Sheet
+            data = [service, name, phone, date, time, price, additional_service, timestamp, note]
+
+            # Get Google Sheets client and append the data
+            client = get_gsheet_client(JSON_KEYFILE)
+            append_to_sheet(client, SPREADSHEET_ID, data)
+
+            return jsonify(message='Form submitted successfully and data stored in Google Sheets!')
+
+        except Exception as e:
+            return jsonify(message='Failed to submit form: ' + str(e)), 500
 
     from .routes import main
     app.register_blueprint(main)

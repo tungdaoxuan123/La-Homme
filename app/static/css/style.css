@@ -23,7 +23,6 @@
 @import url(slick.css);
 @import url(jquery.fancybox.min.css);
 @import url(jquery-ui.css);
-@import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
@@ -1347,4 +1346,357 @@ a:hover {
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
+}
+
+#booking_form_section {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.form-container.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close-button {
+    font-size: 2rem; /* Increase font size for a bigger button */
+    font-weight: bold;
+    color: #333;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close-button:hover {
+    color: #ff0000; /* Change color on hover */
+}
+
+/* Ensure form-container has a relative position */
+.form-container {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Additional styling for form elements */
+/* Styles for the close button */
+.close-button {
+    font-size: 2rem; /* Increase font size for a bigger button */
+    font-weight: bold;
+    color: #333;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close-button:hover {
+    color: #ff0000; /* Change color on hover */
+}
+
+/* Ensure form-container has a relative position */
+.form-container {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Additional styling for form elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.price-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-card {
+    flex: 1;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.price-card.selected {
+    background-color: #db9c60;
+    color: #fff;
+}
+
+/* Error styling */
+input.error {
+    border-color: #ff0000;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+/* Container for the time selection */
+.time-selection {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Space between the two boxes */
+}
+
+/* Style for each time box */
+.time-box {
+    flex: 1; /* Ensures both boxes take up equal space */
+    padding: 5px; /* Reduced padding for smaller size */
+    box-sizing: border-box; /* Ensures padding is included in the box size */
+    text-align: center;
+    min-width: 80px; /* Minimum width for the boxes */
+    height: 40px; /* Fixed height for the boxes */
+}
+
+/* Style for the input fields inside the boxes */
+.time-box input {
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em; /* Slightly smaller font size */
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.time-box input:focus {
+    border: 2px solid #db9c60; /* Change border color on focus */
+}
+
+/* Style for the price display */
+#price_display {
+    font-size: 1.5em; /* Increase the font size */
+    font-weight: bold; /* Make the text bold */
+    color: #db9c60; /* Set the color to match the button color */
+    margin-top: 10px; /* Add some space above the price display */
+    padding: 10px; /* Add some padding around the text */
+    border: 2px solid #db9c60; /* Add a border to match the text color */
+    border-radius: 5px; /* Round the corners */
+    text-align: center; /* Center the text */
+    background-color: #f0f0f0; /* Light background color */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.price-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.price-card {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: 1px solid #db9c60;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.price-card:hover {
+    background-color: #f0f0f0;
+}
+
+.price-card.selected {
+    background-color: #db9c60;
+    color: #ffffff;
+}
+
+.time-selection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.time-box {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.time-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+    border: 2px solid #db9c60;
+    border-radius: 5px;
+}
+
+.time-box input:last-child {
+    margin-right: 0;
+}
+
+#error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+/* Style for the price display */
+#price_display {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #db9c60;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #db9c60;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+/* Adjusting the select field */
+#additional_service {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #db9c60;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+/* Wrapper for the custom select */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Hide the default select element */
+.custom-select select {
+    display: none;
+}
+
+/* Custom styling for the select box */
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #db9c60;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* Style for the selected option text */
+.custom-select::after {
+    content: attr(data-value);
+    display: block;
+    font-size: 1em;
+    color: #333;
+    padding: 10px;
+}
+
+/* Custom dropdown menu */
+.custom-select .select-items {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid #db9c60;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+}
+
+/* Items in the dropdown menu */
+.custom-select .select-items div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.custom-select .select-items div:hover {
+    background-color: #db9c60;
+    color: #fff;
+}
+
+/* Style the custom select wrapper */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px; /* Adjust the distance as needed */
+}
+
+
+/* Style the select element to make it look more polished */
+select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for better appearance */
+    font-size: 1em; /* Font size */
+    border: 1px solid #db9c60; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #ffffff; /* Background color */
+    color: #333; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    appearance: none; /* Remove default styling */
+    background-image: url('path/to/your/dropdown-arrow.svg'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position of the arrow */
+    background-size: 16px; /* Size of the arrow */
+}
+
+/* Optional: Add some space below the select element */
+.form-group {
+    margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+/* Remove default styling of the select dropdown */
+select:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #db9c60; /* Change border color on focus */
+    box-shadow: 0 0 0 3px rgba(219, 156, 96, 0.3); /* Add custom focus shadow */
 }

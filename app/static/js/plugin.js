@@ -724,11 +724,6 @@ d));k.push(d)});return 1==k.length?k[0]:k};window.NiceScroll={getjQuery:function
 /* JQuery Nice Select - v1.0
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
 
-/* jQuery Nice Select - v1.0
-   https://github.com/hernansartorio/jquery-nice-select
-   Made by Hernán Sartorio  */
-!function(e){e.fn.niceSelect=function(t){function s(t){t.after(e("<div></div>").addClass("nice-select").addClass(t.attr("class")||"").addClass(t.attr("disabled")?"disabled":"").attr("tabindex",t.attr("disabled")?null:"0").html('<span class="current"></span><ul class="list"></ul>'));var s=t.next(),n=t.find("option"),i=t.find("option:selected");s.find(".current").html(i.data("display")||i.text()),n.each(function(t){var n=e(this),i=n.data("display");s.find("ul").append(e("<li></li>").attr("data-value",n.val()).attr("data-display",i||null).addClass("option"+(n.is(":selected")?" selected":"")+(n.is(":disabled")?" disabled":"")).html(n.text()))})}if("string"==typeof t)return"update"==t?this.each(function(){var t=e(this),n=e(this).next(".nice-select"),i=n.hasClass("open");n.length&&(n.remove(),s(t),i&&t.next().trigger("click"))}):"destroy"==t?(this.each(function(){var t=e(this),s=e(this).next(".nice-select");s.length&&(s.remove(),t.css("display",""))}),0==e(".nice-select").length&&e(document).off(".nice_select")):console.log('Method "'+t+'" does not exist.'),this;this.hide(),this.each(function(){var t=e(this);t.next().hasClass("nice-select")||s(t)}),e(document).off(".nice_select"),e(document).on("click.nice_select",".nice-select",function(t){var s=e(this);e(".nice-select").not(s).removeClass("open"),s.toggleClass("open"),s.hasClass("open")?(s.find(".option"),s.find(".focus").removeClass("focus"),s.find(".selected").addClass("focus")):s.focus()}),e(document).on("click.nice_select",function(t){0===e(t.target).closest(".nice-select").length&&e(".nice-select").removeClass("open").find(".option")}),e(document).on("click.nice_select",".nice-select .option:not(.disabled)",function(t){var s=e(this),n=s.closest(".nice-select");n.find(".selected").removeClass("selected"),s.addClass("selected");var i=s.data("display")||s.text();n.find(".current").text(i),n.prev("select").val(s.data("value")).trigger("change")}),e(document).on("keydown.nice_select",".nice-select",function(t){var s=e(this),n=e(s.find(".focus")||s.find(".list .option.selected"));if(32==t.keyCode||13==t.keyCode)return s.hasClass("open")?n.trigger("click"):s.trigger("click"),!1;if(40==t.keyCode){if(s.hasClass("open")){var i=n.nextAll(".option:not(.disabled)").first();i.length>0&&(s.find(".focus").removeClass("focus"),i.addClass("focus"))}else s.trigger("click");return!1}if(38==t.keyCode){if(s.hasClass("open")){var l=n.prevAll(".option:not(.disabled)").first();l.length>0&&(s.find(".focus").removeClass("focus"),l.addClass("focus"))}else s.trigger("click");return!1}if(27==t.keyCode)s.hasClass("open")&&s.trigger("click");else if(9==t.keyCode&&s.hasClass("open"))return!1});var n=document.createElement("a").style;return n.cssText="pointer-events:auto","auto"!==n.pointerEvents&&e("html").addClass("no-csspointerevents"),this}}(jQuery);
-
 
 
 /* jQuery UI - v1.12.1
@@ -18982,6 +18977,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let isExpensive = false;
 
+// Function to show the form and set the selected service
 function showForm(serviceName) {
     const formSection = document.getElementById('booking_form_section');
     const formTitle = document.getElementById('form_title');
@@ -18990,62 +18986,120 @@ function showForm(serviceName) {
 
     formTitle.textContent = `Đặt gói ${serviceName}`;
     selectedService.value = serviceName;
-    formSection.style.display = 'block';
+    formSection.style.display = 'flex';
     setTimeout(() => {
         formContainer.classList.add('show');
     }, 10); // Adding a small delay to trigger the transition
 }
 
+// Adding event listeners to buttons
+document.querySelectorAll('.service-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const serviceName = button.getAttribute('data-service');
+        showForm(serviceName);
+    });
+});
+
+function closeForm() {
+    const formSection = document.getElementById('booking_form_section');
+    const formContainer = document.querySelector('.form-container');
+    isExpensive = false;
+    formContainer.classList.remove('show');
+    setTimeout(() => {
+        formSection.style.display = 'none';
+    }, 100); // Delay to match the CSS transition
+}
+
+function updatePrice() {
+    const additionalService = document.getElementById('additional_service').value;
+    const selectedPriceText = document.getElementById('selected_price').value;
+
+    let basePrice = 0;
+
+    // Extract base price if a valid price is selected
+    if (selectedPriceText) {
+        basePrice = parseInt(selectedPriceText.split(': ')[1].replace('k', '').replace(',', '')) * 1000;
+
+        // Apply additional cost if '60p' is selected and an additional service is chosen
+        if (selectedPriceText.startsWith('60p') && additionalService) {
+            basePrice += 50000; // Additional cost for selected service (50k VND)
+        }
+    }
+
+    // Update the price display
+    const priceDisplay = document.getElementById('price_display');
+    priceDisplay.textContent = basePrice ? `Giá: ${(basePrice / 1000).toFixed(0)}k` : 'Giá: ';
+	final_price.value = (basePrice / 1000).toFixed(0)
+}
+
 function selectPrice(element, price) {
     // Remove 'selected' class from all price cards
     document.querySelectorAll('.price-card').forEach(card => card.classList.remove('selected'));
-    
+
     // Add 'selected' class to the clicked price card
     element.classList.add('selected');
-    
+
     // Update the hidden input field with the selected price
     document.getElementById('selected_price').value = price;
-}
-function togglePrices() {
-	const priceOptions = document.querySelector('.price-options');
-	const toggleButton = document.querySelector('#toggle_price_button');
 
-	if (isExpensive) {
-		priceOptions.innerHTML = `
-			<div class="price-card" onclick="selectPrice(this, '60p: 399k')">60p: 399k</div>
-			<div class="price-card" onclick="selectPrice(this, '90p: 499k')">90p: 499k</div>
-			<div class="price-card" onclick="selectPrice(this, '120p: 599k')">120p: 599k</div>
-		`;
-		toggleButton.style.backgroundColor = '#858585'; // Light green
-        toggleButton.style.color = '#ffffff'; // Dark green
-	} else {
-		priceOptions.innerHTML = `
-			<div class="price-card" onclick="selectPrice(this, '60p: 599k')">60p: 599k</div>
-			<div class="price-card" onclick="selectPrice(this, '90p: 699k')">90p: 699k</div>
-			<div class="price-card" onclick="selectPrice(this, '120p: 799k')">120p: 799k</div>
-		`;
-		toggleButton.style.backgroundColor = '#db9c60'; // Light green
-        toggleButton.style.color = '#ffffff'; // Dark green
-	}
-	isExpensive = !isExpensive;
+    // Call updatePrice to adjust the total price
+    updatePrice();
 }
+
+function togglePrices() {
+    const priceOptions = document.querySelector('.price-options');
+    const toggleButton = document.querySelector('#toggle_price_button');
+
+    // Toggle the isExpensive flag
+    isExpensive = !isExpensive;
+
+    // Update the price options based on the new value of isExpensive
+    if (isExpensive) {
+        priceOptions.innerHTML = `
+            <div class="price-card" onclick="selectPrice(this, '60p: 400k')">60p</div>
+            <div class="price-card" onclick="selectPrice(this, '90p: 500k')">90p</div>
+            <div class="price-card" onclick="selectPrice(this, '120p: 600k')">120p</div>
+        `;
+        toggleButton.style.backgroundColor = '#858585'; // Light gray
+        toggleButton.style.color = '#ffffff'; // White
+    } else {
+        priceOptions.innerHTML = `
+            <div class="price-card" onclick="selectPrice(this, '60p: 600k')">60p</div>
+            <div class="price-card" onclick="selectPrice(this, '90p: 700k')">90p</div>
+            <div class="price-card" onclick="selectPrice(this, '120p: 800k')">120p</div>
+        `;
+        toggleButton.style.backgroundColor = '#db9c60'; // Original color
+        toggleButton.style.color = '#ffffff'; // White
+    }
+
+    // Clear the selected price when toggling prices and update the display
+    document.getElementById('selected_price').value = '';
+    updatePrice();
+}
+
+
 
 function submitForm() {
     const form = document.getElementById('booking_form');
     if (!form) {
         console.error('Form not found');
-        return;
+        return false; // Prevent submission
     }
+
+    if (!validateForm()) {
+        return false; // Prevent submission if validation fails
+    }
+
     const formData = new FormData(form);
 
     fetch('/send-email', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.text()) // Fetch as text to handle non-JSON responses
+    .then(response => response.text())
     .then(text => {
         try {
-            const data = JSON.parse(text); // Try parsing as JSON
+            const data = JSON.parse(text);
             if (data.success) {
                 alert('Email sent successfully');
             } else {
@@ -19059,9 +19113,49 @@ function submitForm() {
     .catch(error => {
         console.error('Error:', error);
     });
+
+    return false; // Prevent default form submission
 }
 
-function onSubmit(token) {
-    document.getElementById("demo-form").submit();
-  }
-  
+function validateForm() {
+    const form = document.getElementById('booking_form');
+    if (!form) {
+        console.error('Form not found');
+        return false;
+    }
+
+    const requiredFields = ['name', 'phone', 'date', 'hour', 'minute', 'selected_price'];
+    let isValid = true;
+
+    requiredFields.forEach(field => {
+        const input = document.getElementById(field);
+        if (!input.value) {
+            isValid = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+
+    if (!validateDate()) {
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+
+function validateDate() {
+    const dateInput = document.getElementById('date');
+    const selectedDate = new Date(dateInput.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Remove time part for comparison
+
+    if (selectedDate <= today) {
+        alert('Ngày đã chọn phải là ngày trong tương lai.');
+        dateInput.classList.add('error');
+        return false;
+    }
+    dateInput.classList.remove('error');
+    return true;
+}
