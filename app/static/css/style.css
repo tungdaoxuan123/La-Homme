@@ -350,43 +350,21 @@ button {
     color: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .banner_section {
-        height: 500px; /* Adjust height for smaller screens */
-        padding: 90px 0px 20px 0px; /* Adjust padding */
-    }
-
-    .banner_taital {
-        font-size: 14px; /* Adjust font size */
-        padding: 0 10px; /* Reduce padding */
-    }
-
-    .outstanding_text, .coffee_text, .there_text, .sdt_text {
-        font-size: 1.2rem; /* Adjust font size for smaller screens */
-    }
-
-    .sdt_text {
-        padding-top: 70px; /* Further adjust font size */
-    }
-}
-
-@media (max-width: 480px) {
-    .banner_section {
-        height: 400px; /* Further adjust height for very small screens */
+        margin-top: 90px;
+        width: 100%; /* Use percentage for width to make it responsive */
+        height: 35vh; /* Use viewport height to make it responsive */
         padding: 90px 0px 15px 0px; /* Adjust padding */
+        background-image: url(../images/smaller-banner-bg.png);
     }
 
     .banner_taital {
-        font-size: 12px; /* Further adjust font size */
-        padding: 0 5px; /* Further reduce padding */
+        display: none;
     }
 
     .outstanding_text, .coffee_text, .there_text, .sdt_text {
-        font-size: 1rem; /* Further adjust font size */
-    }
-
-    .sdt_text {
-        padding-top: 25px; /* Further adjust font size */
+        display: none;
     }
 }
 
