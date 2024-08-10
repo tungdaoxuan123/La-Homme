@@ -1104,11 +1104,6 @@ a:hover {
     border-radius: 50%; /* Ensure image is circular */
 }
 
-@media (max-width: 549px) {
-    .float-contact {
-        display: none;
-    }
-}
 
 /* General styling for the icon boxes */
 .elementor-icon-box-wrapper {
