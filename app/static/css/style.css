@@ -356,6 +356,11 @@ button {
         padding: 90px 0px 20px 0px; /* Adjust padding */
     }
 
+    .banner_taital {
+        font-size: 14px; /* Adjust font size */
+        padding: 0 10px; /* Reduce padding */
+    }
+
     .outstanding_text, .coffee_text, .there_text, .sdt_text {
         font-size: 1.2rem; /* Adjust font size for smaller screens */
     }
@@ -366,7 +371,6 @@ button {
 
     .learnmore_bt a {
         padding: 8px 15px; /* Adjust button padding */
-        font-size: 0.9rem; /* Adjust font size for button */
     }
 }
 
@@ -374,6 +378,11 @@ button {
     .banner_section {
         height: 400px; /* Further adjust height for very small screens */
         padding: 90px 0px 15px 0px; /* Adjust padding */
+    }
+
+    .banner_taital {
+        font-size: 12px; /* Further adjust font size */
+        padding: 0 5px; /* Further reduce padding */
     }
 
     .outstanding_text, .coffee_text, .there_text, .sdt_text {
@@ -386,7 +395,6 @@ button {
 
     .learnmore_bt a {
         padding: 6px 10px; /* Further adjust button padding */
-        font-size: 0.8rem; /* Further adjust font size for button */
     }
 }
 
