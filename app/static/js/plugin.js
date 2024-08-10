@@ -19091,6 +19091,7 @@ function submitForm() {
     }
 
     const formData = new FormData(form);
+	formData.append('KTV', isExpensive);
 
     fetch('/send-email', {
         method: 'POST',
