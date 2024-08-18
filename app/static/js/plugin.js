@@ -19046,12 +19046,13 @@ function selectPrice(element, price) {
     updatePrice();
 }
 
-function togglePrices() {
+function togglePrices(state) {
     const priceOptions = document.querySelector('.price-options');
-    const toggleButton = document.querySelector('#toggle_price_button');
+	const toggleOnButton = document.querySelector('#toggle_on_button');
+    const toggleOffButton = document.querySelector('#toggle_off_button');
 
     // Toggle the isExpensive flag
-    isExpensive = !isExpensive;
+    isExpensive = state;
 
     // Update the price options based on the new value of isExpensive
     if (isExpensive) {
@@ -19060,16 +19061,21 @@ function togglePrices() {
             <div class="price-card" onclick="selectPrice(this, '90p: 500k')">90p</div>
             <div class="price-card" onclick="selectPrice(this, '120p: 600k')">120p</div>
         `;
-        toggleButton.style.backgroundColor = '#858585'; // Light gray
-        toggleButton.style.color = '#ffffff'; // White
+        toggleOnButton.style.backgroundColor = '#db9c60'; // Active state color
+        toggleOnButton.style.color = '#ffffff';
+        toggleOffButton.style.backgroundColor = '#858585'; // Inactive state color
+        toggleOffButton.style.color = '#ffffff';
     } else {
         priceOptions.innerHTML = `
             <div class="price-card" onclick="selectPrice(this, '60p: 600k')">60p</div>
             <div class="price-card" onclick="selectPrice(this, '90p: 700k')">90p</div>
             <div class="price-card" onclick="selectPrice(this, '120p: 800k')">120p</div>
         `;
-        toggleButton.style.backgroundColor = '#db9c60'; // Original color
-        toggleButton.style.color = '#ffffff'; // White
+        toggleOffButton.style.backgroundColor = '#db9c60'; // Active state color
+        toggleOffButton.style.color = '#ffffff';
+        toggleOnButton.style.backgroundColor = '#858585'; // Inactive state color
+        toggleOnButton.style.color = '#ffffff';
+        isExpensive = false;
     }
 
     // Clear the selected price when toggling prices and update the display
