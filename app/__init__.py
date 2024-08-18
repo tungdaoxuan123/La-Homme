@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
+import traceback
 
 app = Flask(__name__)
 
@@ -42,7 +43,8 @@ def create_app():
 
             # Data to be appended to the Google Sheet
             data = [service, name, phone, date, time, price, ktv, additional_service, timestamp, final_price, note]
-
+            
+            print(data)
             # Get Google Sheets client and append the data
             client = get_gsheet_client(JSON_KEYFILE)
             append_to_sheet(client, SPREADSHEET_ID, data)
@@ -50,6 +52,7 @@ def create_app():
             return jsonify(message='Form submitted successfully and data stored in Google Sheets!')
 
         except Exception as e:
+            traceback.print_exc()
             return jsonify(message='Failed to submit form: ' + str(e)), 500
     
     @app.route('/send-ktv-info', methods=['POST'])
