@@ -271,33 +271,36 @@
             <h1 class="contact_text">Tuyển Dụng</h1>
          </div>
       </div>
-      <div class="contact_section_2 ">
+      <div class="contact_section_2">
          <div class="container-fluid">
-            <div class="row">
-               <div class="col-md-12 padding_0">
-                  <div class="mail_section">
-                     <div class="email_text">
-                        <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Tên" name="Email">
-                        </div>
-                        <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Email" name="Email">
-                        </div>
-                        <div class="form-group">
-                           <input type="text" class="email-bt" placeholder="Số điện thoại" name="Email">
-                        </div>
-                        <div class="form-group">
-                           <textarea class="massage-bt" placeholder="Tin nhắn" rows="5" id="comment" name="Massage"></textarea>
-                        </div>
-                        <div class="send_btn">
-                           <div type="text" class="main_bt"><a href="#">SEND</a></div>
-                        </div>
+             <div class="row">
+                 <div class="col-md-12 padding_0">
+                     <div class="mail_section">
+                         <form id="contactForm" class="email_form">
+                             <div class="email_text">
+                                 <div class="form-group">
+                                     <input type="text" class="email-bt" placeholder="Tên" name="name" required>
+                                 </div>
+                                 <div class="form-group">
+                                     <input type="email" class="email-bt" placeholder="Email" name="email" required>
+                                 </div>
+                                 <div class="form-group">
+                                     <input type="tel" class="email-bt" placeholder="Số điện thoại" name="phone" required>
+                                 </div>
+                                 <div class="form-group">
+                                     <textarea class="massage-bt" placeholder="Tin nhắn" rows="5" id="comment" name="message" required></textarea>
+                                 </div>
+                                 <div class="send_btn">
+                                     <button type="submit" onclick="submitKTVForm()" class="main_bt">SEND</button>
+                                 </div>
+                             </div>
+                         </form>
                      </div>
-                  </div>
-               </div>
-            </div>
+                 </div>
+             </div>
          </div>
-      </div>
+     </div>
+     
       <!-- contact section end -->
       <!-- footer section start -->
       <div class="footer_section layout_padding">

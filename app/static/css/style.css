@@ -1716,3 +1716,24 @@ select:focus {
     border-color: #db9c60; /* Change border color on focus */
     box-shadow: 0 0 0 3px rgba(219, 156, 96, 0.3); /* Add custom focus shadow */
 }
+
+/* Main Button Style */
+.main_bt {
+    background-color: #db9c60; /* Background color */
+    color: #ffffff; /* Text color */
+    border: none; /* Remove default border */
+    padding: 12px 24px; /* Padding inside the button */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    text-align: center; /* Center text inside button */
+    display: inline-block; /* Display inline-block for alignment */
+    text-decoration: none; /* Remove underline from link-like button */
+}
+
+/* Button Hover State */
+.main_bt:hover {
+    background-color: #ae794b; /* Darker background on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+}

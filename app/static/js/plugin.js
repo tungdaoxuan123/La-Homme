@@ -19152,6 +19152,70 @@ function validateForm() {
 }
 
 
+function validateKTVForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) {
+        console.error('Form not found');
+        return false;
+    }
+
+    const requiredFields = ['name', 'phone'];
+    let isValid = true;
+
+    requiredFields.forEach(fieldId => {
+        const input = document.getElementById(fieldId);
+        if (!input || !input.value.trim()) {
+            isValid = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+
+    if (!validateDate()) {
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function submitKTVForm(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    if (!validateKTVForm()) {
+        return; // Prevent submission if validation fails
+    }
+
+    const form = document.getElementById('contactForm');
+    if (!form) {
+        console.error('Form not found');
+        return;
+    }
+
+    const formData = new FormData(form);
+
+    fetch('/send-ktv-info', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) // Use JSON if the server responds with JSON
+    .then(data => {
+        if (data.success) {
+            alert('Email sent successfully');
+        } else {
+            alert('Failed to send email: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error: Failed to send email');
+    });
+}
+
+// Attach event listener to the form submit event
+document.getElementById('contactForm').addEventListener('submit', submitKTVForm);
+
+
 function validateDate() {
     const dateInput = document.getElementById('date');
     const selectedDate = new Date(dateInput.value);

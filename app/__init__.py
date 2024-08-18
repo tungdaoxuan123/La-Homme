@@ -14,6 +14,7 @@ TO_EMAIL = os.environ.get('TO_EMAIL')
 JSON_KEYFILE = 'la-homme.json'
 # Google Sheet ID
 SPREADSHEET_ID = '14j6jcdU8deSEQkF1vwFLkY7G7ALn8YYv0IiliPWGt1Q'
+SPREADSHEET_KTV_ID = '1u0CoP--UtA8Fywqx2361ODJmMcpJA2TMhsosEpiMkgQ'
 
 def create_app():
     app = Flask(__name__)
@@ -45,6 +46,25 @@ def create_app():
             # Get Google Sheets client and append the data
             client = get_gsheet_client(JSON_KEYFILE)
             append_to_sheet(client, SPREADSHEET_ID, data)
+
+            return jsonify(message='Form submitted successfully and data stored in Google Sheets!')
+
+        except Exception as e:
+            return jsonify(message='Failed to submit form: ' + str(e)), 500
+    
+    @app.route('/send-ktv-info', methods=['POST'])
+    def send_ktv_email():
+        try:
+            name = request.form['name']
+            phone = request.form['phone']
+            email = request.form['email']
+            message = request.form['message']
+            # Data to be appended to the Google Sheet
+            data = [name, phone, email, message]
+
+            # Get Google Sheets client and append the data
+            client = get_gsheet_client(JSON_KEYFILE)
+            append_to_sheet(client, SPREADSHEET_KTV_ID, data)
 
             return jsonify(message='Form submitted successfully and data stored in Google Sheets!')
 
