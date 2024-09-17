@@ -14,7 +14,7 @@ TO_EMAIL = os.environ.get('TO_EMAIL')
 # Path to your service account key file
 JSON_KEYFILE = 'la-homme.json'
 # Google Sheet ID
-SPREADSHEET_ID = '1u0CoP--UtA8Fywqx2361ODJmMcpJA2TMhsosEpiMkgQ' # '14j6jcdU8deSEQkF1vwFLkY7G7ALn8YYv0IiliPWGt1Q'
+SPREADSHEET_ID = '14j6jcdU8deSEQkF1vwFLkY7G7ALn8YYv0IiliPWGt1Q'
 SPREADSHEET_KTV_ID = '1u0CoP--UtA8Fywqx2361ODJmMcpJA2TMhsosEpiMkgQ'
 
 def create_app():
