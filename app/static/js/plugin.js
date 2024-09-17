@@ -19067,9 +19067,9 @@ function togglePrices(state) {
         toggleOffButton.style.color = '#ffffff';
     } else {
         priceOptions.innerHTML = `
-            <div class="price-card" onclick="selectPrice(this, '60p: 600k')">60p</div>
-            <div class="price-card" onclick="selectPrice(this, '90p: 700k')">90p</div>
-            <div class="price-card" onclick="selectPrice(this, '120p: 800k')">120p</div>
+            <div class="price-card" onclick="selectPrice(this, '60p: 500k')">60p</div>
+            <div class="price-card" onclick="selectPrice(this, '90p: 600k')">90p</div>
+            <div class="price-card" onclick="selectPrice(this, '120p: 700k')">120p</div>
         `;
         toggleOffButton.style.backgroundColor = '#db9c60'; // Active state color
         toggleOffButton.style.color = '#ffffff';
